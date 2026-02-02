@@ -1,0 +1,11 @@
+# Obsidian Workflow Configuration
+# Copy this file to ~/.config/obsidian-workflow/config and customize
+
+# Path to your Obsidian vault
+VAULT="$HOME/path/to/your/vault"
+
+# Google Calendar names for gcalcli (space-separated, quote each name)
+CALENDARS=(
+    "Personal"
+    "Work"
+)

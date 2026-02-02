@@ -1,7 +1,14 @@
 #!/bin/bash
 # obsidian-end.sh - End tracking work
 
-VAULT="$HOME/Dropbox/Sync/Obsidian"
+# Load configuration
+CONFIG_FILE="$HOME/.config/obsidian-workflow/config"
+if [ ! -f "$CONFIG_FILE" ]; then
+    osascript -e "display notification \"Config file not found: $CONFIG_FILE\" with title \"Error\" sound name \"Basso\""
+    exit 1
+fi
+source "$CONFIG_FILE"
+
 TODAY=$(date +%Y-%m-%d)
 DAILY_PATH="$VAULT/Daily/$TODAY.md"
 TRACKER_FILE="$HOME/.obsidian-work-tracker"

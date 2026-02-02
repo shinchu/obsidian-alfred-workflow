@@ -1,7 +1,14 @@
 #!/bin/bash
 # obsidian-brief.sh - Generate morning briefing
 
-VAULT="$HOME/Dropbox/Sync/Obsidian"
+# Load configuration
+CONFIG_FILE="$HOME/.config/obsidian-workflow/config"
+if [ ! -f "$CONFIG_FILE" ]; then
+    osascript -e "display notification \"Config file not found: $CONFIG_FILE\" with title \"Error\" sound name \"Basso\""
+    exit 1
+fi
+source "$CONFIG_FILE"
+
 TODAY=$(date +%Y-%m-%d)
 DAILY_PATH="$VAULT/Daily/$TODAY.md"
 TEMPLATE_PATH="$VAULT/Templates/Daily.md"
@@ -21,18 +28,13 @@ echo "" >> "$BRIEF_CONTENT"
 echo "## ☀️ Morning Briefing ($(date +%H:%M))" >> "$BRIEF_CONTENT"
 echo "" >> "$BRIEF_CONTENT"
 
-# Today's calendar (excluding 野原先生)
+# Today's calendar
 echo "### 📅 今日の予定" >> "$BRIEF_CONTENT"
-CALENDAR_OUTPUT=$(gcalcli agenda "$TODAY" "$TODAY 23:59" --nostarted \
-    --calendar "GEDES" \
-    --calendar "Nohara Lab" \
-    --calendar "Faculty" \
-    --calendar "Studio 108 Reservation" \
-    --calendar "WSR Reservation" \
-    --calendar "ESD" \
-    --calendar "zhuxru@gmail.com" \
-    --calendar "家族" \
-    --calendar "日本の祝日" \
+CALENDAR_ARGS=""
+for cal in "${CALENDARS[@]}"; do
+    CALENDAR_ARGS="$CALENDAR_ARGS --calendar \"$cal\""
+done
+CALENDAR_OUTPUT=$(eval gcalcli agenda "$TODAY" "$TODAY 23:59" --nostarted $CALENDAR_ARGS \
     2>/dev/null | sed 's/\x1b\[[0-9;]*m//g' | grep -E "[0-9]{1,2}:[0-9]{2}|^[[:space:]]+[A-Za-z]" | sed 's/^[[:space:]]*//')
 
 if [ -n "$CALENDAR_OUTPUT" ]; then

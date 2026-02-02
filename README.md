@@ -23,7 +23,7 @@ ObsidianとAlfredを統合し、Daily note、タスク管理、作業時間ト�
 ## インストール
 
 ```bash
-git clone https://github.com/yourusername/obsidian-claude-workflow.git
+git clone https://github.com/shinchu/obsidian-claude-workflow.git
 cd obsidian-claude-workflow
 ./install.sh
 ```
@@ -32,11 +32,27 @@ cd obsidian-claude-workflow
 
 ## 設定
 
-スクリプト内のVault パスを環境に合わせて変更してください：
+インストール後、設定ファイルを編集してください：
 
 ```bash
-VAULT="$HOME/Dropbox/Sync/Obsidian"
+~/.config/obsidian-workflow/config
 ```
+
+### 設定項目
+
+```bash
+# Obsidian Vaultのパス
+VAULT="$HOME/path/to/your/vault"
+
+# Google Calendar名（gcalcli用）
+CALENDARS=(
+    "Personal"
+    "Work"
+    "Family"
+)
+```
+
+`CALENDARS` は `brief` と `review` コマンドで使用されます。gcalcliを使わない場合は空の配列 `CALENDARS=()` でも動作します。
 
 ### ディレクトリ構成
 
@@ -53,10 +69,10 @@ Obsidian/
 
 ### メモの追加
 
-Alfredで `memo 買い物リストを作る` と入力すると、今日のDaily noteに時刻付きで追記されます。
+Alfredで `memo とても素晴らしいアイデア` と入力すると、今日のDaily noteに時刻付きで追記されます。
 
 ```
-- 14:30 買い物リストを作る
+- 14:30 とても素晴らしいアイデア
 ```
 
 ### タスクの作成
@@ -94,6 +110,6 @@ Daily noteに以下のように記録されます：
 
 MIT
 
-## 作者
+## その他
 
-Claude + Xinru
+Claude CodeとWisper Flowを使用して作成しました

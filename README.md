@@ -1,4 +1,4 @@
-# Obsidian Claude Workflow
+# Obsidian Alfred Workflow
 
 A workflow integrating Obsidian and Alfred to streamline Daily notes, task management, and work time tracking.
 

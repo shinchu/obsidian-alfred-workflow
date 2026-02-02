@@ -1,26 +1,26 @@
 # Obsidian Claude Workflow
 
-ObsidianとAlfredを統合し、Daily note、タスク管理、作業時間トラッキングを効率化するワークフローです。
+A workflow integrating Obsidian and Alfred to streamline Daily notes, task management, and work time tracking.
 
-## 機能
+## Features
 
-| コマンド | 説明 |
-|---------|------|
-| `memo [text]` | Daily noteにクイックメモを追加 |
-| `task [text]` | 新しいタスクを作成（翌日予定） |
-| `start [text]` | 作業トラッキング開始 |
-| `end` | 作業トラッキング終了、所要時間を計算 |
-| `brief` | 朝のブリーフィング生成 |
-| `review` | 1日の振り返り生成 |
+| Command | Description |
+|---------|-------------|
+| `memo [text]` | Add a quick memo to Daily note |
+| `task [text]` | Create a new task (scheduled for tomorrow) |
+| `start [text]` | Start work tracking |
+| `end` | End work tracking, calculate duration |
+| `brief` | Generate morning briefing |
+| `review` | Generate daily review |
 
-## 必要条件
+## Requirements
 
 - macOS
 - [Alfred](https://www.alfredapp.com/) (Powerpack)
 - [Obsidian](https://obsidian.md/)
-- [gcalcli](https://github.com/insanum/gcalcli) (briefとreview機能用)
+- [gcalcli](https://github.com/insanum/gcalcli) (for brief and review features)
 
-## インストール
+## Installation
 
 ```bash
 git clone https://github.com/shinchu/obsidian-claude-workflow.git
@@ -28,23 +28,23 @@ cd obsidian-claude-workflow
 ./install.sh
 ```
 
-インストール後、Alfredを再起動してください。
+After installation, restart Alfred.
 
-## 設定
+## Configuration
 
-インストール後、設定ファイルを編集してください：
+After installation, edit the configuration file:
 
 ```bash
 ~/.config/obsidian-workflow/config
 ```
 
-### 設定項目
+### Configuration Options
 
 ```bash
-# Obsidian Vaultのパス
+# Path to your Obsidian vault
 VAULT="$HOME/path/to/your/vault"
 
-# Google Calendar名（gcalcli用）
+# Google Calendar names (for gcalcli)
 CALENDARS=(
     "Personal"
     "Work"
@@ -52,64 +52,64 @@ CALENDARS=(
 )
 ```
 
-`CALENDARS` は `brief` と `review` コマンドで使用されます。gcalcliを使わない場合は空の配列 `CALENDARS=()` でも動作します。
+`CALENDARS` is used by the `brief` and `review` commands. If you don't use gcalcli, an empty array `CALENDARS=()` will also work.
 
-### ディレクトリ構成
+### Directory Structure
 
 ```
 Obsidian/
-├── Daily/           # Daily noteの保存先
+├── Daily/           # Daily notes location
 ├── Templates/
-│   └── Daily        # Daily noteテンプレート
+│   └── Daily        # Daily note template
 └── TaskNotes/
-    └── Tasks/       # タスクファイルの保存先
+    └── Tasks/       # Task files location
 ```
 
-## 使い方
+## Usage
 
-### メモの追加
+### Adding a Memo
 
-Alfredで `memo とても素晴らしいアイデア` と入力すると、今日のDaily noteに時刻付きで追記されます。
+Type `memo Great idea for the project` in Alfred, and it will be appended to today's Daily note with a timestamp.
 
 ```
-- 14:30 とても素晴らしいアイデア
+- 14:30 Great idea for the project
 ```
 
-### タスクの作成
+### Creating a Task
 
-`task レポートを書く` で翌日予定のタスクファイルが作成されます。
+`task Write report` creates a task file scheduled for tomorrow.
 
-### 作業時間トラッキング
+### Work Time Tracking
 
-1. `start 論文執筆` で作業開始
-2. `end` で作業終了
+1. `start Writing paper` to start work
+2. `end` to finish work
 
-Daily noteに以下のように記録されます：
+Recorded in Daily note as:
 ```
-- 10:00 🟢 開始: 論文執筆
-- 12:30 🔴 終了: 論文執筆 (2h30m)
+- 10:00 🟢 Start: Writing paper
+- 12:30 🔴 End: Writing paper (2h30m)
 ```
 
-### 朝のブリーフィング
+### Morning Briefing
 
-`brief` で今日の予定とフォーカスすべきタスクを生成します：
+`brief` generates today's schedule and tasks to focus on:
 
-- 📅 今日のカレンダー予定
-- 🔥 今日のフォーカス（優先度高・今日予定・期限切れタスク）
-- 📊 タスクサマリー
+- 📅 Today's calendar events
+- 🔥 Today's focus (high priority, scheduled today, overdue tasks)
+- 📊 Task summary
 
-### 1日の振り返り
+### Daily Review
 
-`review` で1日の振り返りを生成します：
+`review` generates a daily review:
 
-- 📅 今日の予定（実績）
-- ✅ 完了したタスク
-- ⏱️ 作業時間サマリー
+- 📅 Today's events (completed)
+- ✅ Completed tasks
+- ⏱️ Work time summary
 
-## ライセンス
+## License
 
 MIT
 
-## その他
+## Acknowledgments
 
-Claude CodeとWisper Flowを使用して作成しました
+Created using [Claude Code](https://code.claude.com/docs) and [Wispr Flow](https://wisprflow.ai/).

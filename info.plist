@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.xinru.obsidian-claude</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>01-memo-input</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>01-memo-script</string>
+			</dict>
+		</array>
+		<key>02-task-input</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>02-task-script</string>
+			</dict>
+		</array>
+		<key>03-start-input</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>03-start-script</string>
+			</dict>
+		</array>
+		<key>04-end-input</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>04-end-script</string>
+			</dict>
+		</array>
+		<key>05-brief-input</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>05-brief-script</string>
+			</dict>
+		</array>
+		<key>06-review-input</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>06-review-script</string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Claude + Xinru</string>
+	<key>description</key>
+	<string>Obsidian + Claude Code integration for daily notes, tasks, and time tracking</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Obsidian Claude</string>
+	<key>objects</key>
+	<array>
+		<!-- memo -->
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>memo</string>
+				<key>subtext</key>
+				<string>Add a quick memo to today's Daily note</string>
+				<key>text</key>
+				<string>Quick Memo</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>01-memo-input</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>~/.local/bin/obsidian-memo.sh "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>01-memo-script</string>
+		</dict>
+		<!-- task -->
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>task</string>
+				<key>subtext</key>
+				<string>Create a new task</string>
+				<key>text</key>
+				<string>New Task</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>02-task-input</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>~/.local/bin/obsidian-task.sh "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>02-task-script</string>
+		</dict>
+		<!-- start -->
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>start</string>
+				<key>subtext</key>
+				<string>Start tracking work on something</string>
+				<key>text</key>
+				<string>Start Work</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>03-start-input</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>~/.local/bin/obsidian-start.sh "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>03-start-script</string>
+		</dict>
+		<!-- end -->
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>end</string>
+				<key>subtext</key>
+				<string>Stop tracking current work</string>
+				<key>text</key>
+				<string>End Work</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>04-end-input</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>~/.local/bin/obsidian-end.sh</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>04-end-script</string>
+		</dict>
+		<!-- brief -->
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>brief</string>
+				<key>subtext</key>
+				<string>Generate morning briefing</string>
+				<key>text</key>
+				<string>Morning Briefing</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>05-brief-input</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>~/.local/bin/obsidian-brief.sh</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>05-brief-script</string>
+		</dict>
+		<!-- review -->
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>review</string>
+				<key>subtext</key>
+				<string>Generate daily review</string>
+				<key>text</key>
+				<string>Daily Review</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>06-review-input</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>~/.local/bin/obsidian-review.sh</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>06-review-script</string>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Obsidian + Claude Code Workflow
+
+Keywords:
+- memo [text] : Add quick memo to Daily note
+- task [text] : Create new task
+- start [text] : Start tracking work
+- end : Stop tracking, calculate duration
+- brief : Generate morning briefing
+- review : Generate daily review with calendar</string>
+	<key>uidata</key>
+	<dict>
+		<key>01-memo-input</key>
+		<dict><key>xpos</key><integer>50</integer><key>ypos</key><integer>50</integer></dict>
+		<key>01-memo-script</key>
+		<dict><key>xpos</key><integer>250</integer><key>ypos</key><integer>50</integer></dict>
+		<key>02-task-input</key>
+		<dict><key>xpos</key><integer>50</integer><key>ypos</key><integer>150</integer></dict>
+		<key>02-task-script</key>
+		<dict><key>xpos</key><integer>250</integer><key>ypos</key><integer>150</integer></dict>
+		<key>03-start-input</key>
+		<dict><key>xpos</key><integer>50</integer><key>ypos</key><integer>250</integer></dict>
+		<key>03-start-script</key>
+		<dict><key>xpos</key><integer>250</integer><key>ypos</key><integer>250</integer></dict>
+		<key>04-end-input</key>
+		<dict><key>xpos</key><integer>50</integer><key>ypos</key><integer>350</integer></dict>
+		<key>04-end-script</key>
+		<dict><key>xpos</key><integer>250</integer><key>ypos</key><integer>350</integer></dict>
+		<key>05-brief-input</key>
+		<dict><key>xpos</key><integer>50</integer><key>ypos</key><integer>450</integer></dict>
+		<key>05-brief-script</key>
+		<dict><key>xpos</key><integer>250</integer><key>ypos</key><integer>450</integer></dict>
+		<key>06-review-input</key>
+		<dict><key>xpos</key><integer>50</integer><key>ypos</key><integer>550</integer></dict>
+		<key>06-review-script</key>
+		<dict><key>xpos</key><integer>250</integer><key>ypos</key><integer>550</integer></dict>
+	</dict>
+	<key>version</key>
+	<string>1.0.0</string>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>

@@ -1,12 +1,13 @@
 #!/bin/bash
-# install.sh - Install Obsidian Claude workflow
+# install.sh - Install Obsidian workflow
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 INSTALL_DIR="$HOME/.local/bin"
 CONFIG_DIR="$HOME/.config/obsidian-workflow"
-WORKFLOW_DIR="$HOME/Library/Application Support/Alfred/Alfred.alfredpreferences/workflows/obsidian-claude"
+ALFRED_CONFIG_DIR="$HOME/Dropbox/Settings/Alfred/Alfred.alfredpreferences"
+WORKFLOW_DIR="$ALFRED_CONFIG_DIR/workflows/user.workflow.obsidian-workflow"
 
-echo "Installing Obsidian Claude Workflow..."
+echo "Installing Obsidian Workflow..."
 
 # Create directories
 mkdir -p "$INSTALL_DIR"
@@ -41,7 +42,7 @@ echo "  2. Restart Alfred (Preferences -> Workflows -> Reload)"
 echo ""
 echo "Available commands in Alfred:"
 echo "   memo [text]  - Add quick memo to Daily note"
-echo "   task [text]  - Create new task (scheduled: tomorrow)"
+echo "   task [text]  - Create new task with project selection"
 echo "   start [text] - Start tracking work"
 echo "   end          - Stop tracking, show duration"
 echo "   brief        - Generate morning briefing"

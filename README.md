@@ -7,7 +7,7 @@ A workflow integrating Obsidian and Alfred to streamline Daily notes, task manag
 | Command | Description |
 |---------|-------------|
 | `memo [text]` | Add a quick memo to Daily note |
-| `task [text]` | Create a new task (scheduled for tomorrow) |
+| `task [text]` | Create a new task with project selection |
 | `start [text]` | Start work tracking |
 | `end` | End work tracking, calculate duration |
 | `brief` | Generate morning briefing |
@@ -77,7 +77,13 @@ Type `memo Great idea for the project` in Alfred, and it will be appended to tod
 
 ### Creating a Task
 
-`task Write report` creates a task file scheduled for tomorrow.
+`task Write report` shows a project selection list, then creates a task file scheduled for today.
+
+You can filter projects by adding `>` followed by a filter string:
+
+- `task Write report` → shows all projects
+- `task Write report > work` → shows only projects matching "work"
+- `task Write report>ebl` → also works without spaces
 
 ### Work Time Tracking
 

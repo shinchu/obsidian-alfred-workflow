@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>com.xinru.obsidian-claude</string>
+	<string>com.xinru.obsidian-workflow</string>
 	<key>category</key>
 	<string>Productivity</string>
 	<key>connections</key>
@@ -15,7 +15,7 @@
 				<string>01-memo-script</string>
 			</dict>
 		</array>
-		<key>02-task-input</key>
+		<key>02-task-filter</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -54,11 +54,11 @@
 	<key>createdby</key>
 	<string>Claude + Xinru</string>
 	<key>description</key>
-	<string>Obsidian + Claude Code integration for daily notes, tasks, and time tracking</string>
+	<string>Obsidian integration for daily notes, tasks, and time tracking</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>Obsidian Claude</string>
+	<string>Obsidian Workflow</string>
 	<key>objects</key>
 	<array>
 		<!-- memo -->
@@ -106,21 +106,43 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>task</string>
+				<key>queuedelaycustom</key>
+				<integer>0</integer>
+				<key>queuedelayimmediatelyalinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>2</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Loading projects...</string>
+				<key>script</key>
+				<string>~/.local/bin/obsidian-task-projects.sh "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
-				<string>Create a new task</string>
-				<key>text</key>
+				<string>task name [ > project filter]</string>
+				<key>title</key>
 				<string>New Task</string>
+				<key>type</key>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
+			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>02-task-input</string>
+			<string>02-task-filter</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -130,7 +152,7 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>~/.local/bin/obsidian-task.sh "{query}"</string>
+				<string>~/.local/bin/obsidian-task.sh</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -309,7 +331,7 @@
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Obsidian + Claude Code Workflow
+	<string>Obsidian Workflow
 
 Keywords:
 - memo [text] : Add quick memo to Daily note
@@ -324,7 +346,7 @@ Keywords:
 		<dict><key>xpos</key><integer>50</integer><key>ypos</key><integer>50</integer></dict>
 		<key>01-memo-script</key>
 		<dict><key>xpos</key><integer>250</integer><key>ypos</key><integer>50</integer></dict>
-		<key>02-task-input</key>
+		<key>02-task-filter</key>
 		<dict><key>xpos</key><integer>50</integer><key>ypos</key><integer>150</integer></dict>
 		<key>02-task-script</key>
 		<dict><key>xpos</key><integer>250</integer><key>ypos</key><integer>150</integer></dict>

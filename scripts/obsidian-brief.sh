@@ -30,12 +30,12 @@ echo "" >> "$BRIEF_CONTENT"
 
 # Today's calendar
 echo "### 📅 今日の予定" >> "$BRIEF_CONTENT"
-CALENDAR_ARGS=""
+CALENDAR_ARGS=()
 for cal in "${CALENDARS[@]}"; do
-    CALENDAR_ARGS="$CALENDAR_ARGS --calendar \"$cal\""
+    CALENDAR_ARGS+=("--calendar" "$cal")
 done
-CALENDAR_OUTPUT=$(eval gcalcli agenda "$TODAY" "$TODAY 23:59" --nostarted $CALENDAR_ARGS \
-    2>/dev/null | sed 's/\x1b\[[0-9;]*m//g' | grep -E "[0-9]{1,2}:[0-9]{2}|^[[:space:]]+[A-Za-z]" | sed 's/^[[:space:]]*//')
+CALENDAR_OUTPUT=$(gcalcli agenda "$TODAY" "$TODAY 23:59" --nostarted "${CALENDAR_ARGS[@]}" \
+    2>/dev/null | sed 's/\x1b\[[0-9;]*m//g' | grep -E "[0-9]{1,2}:[0-9]{2}|^[[:space:]]+[A-Za-z]" | sed 's/^[[:space:]]*//' | sed 's/^[A-Z][a-z][a-z] [A-Z][a-z][a-z] [0-9][0-9]  //')
 
 if [ -n "$CALENDAR_OUTPUT" ]; then
     echo "$CALENDAR_OUTPUT" | while IFS= read -r line; do

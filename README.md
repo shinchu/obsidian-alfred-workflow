@@ -84,7 +84,6 @@ You can filter projects by adding `>` followed by a filter string:
 
 - `task Write report` → shows all projects
 - `task Write report > work` → shows only projects matching "work"
-- `task Write report>ebl` → also works without spaces
 
 ### Attaching a Slack Link
 

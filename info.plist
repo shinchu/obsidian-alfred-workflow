@@ -50,6 +50,13 @@
 				<string>06-review-script</string>
 			</dict>
 		</array>
+		<key>07-slack-filter</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>07-slack-script</string>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Claude + Xinru</string>
@@ -329,6 +336,69 @@
 			<key>uid</key>
 			<string>06-review-script</string>
 		</dict>
+		<!-- slack -->
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>slack</string>
+				<key>queuedelaycustom</key>
+				<integer>0</integer>
+				<key>queuedelayimmediatelyalinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>2</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Loading tasks...</string>
+				<key>script</key>
+				<string>~/.local/bin/obsidian-slack-tasks.sh "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Attach Slack link to a task</string>
+				<key>title</key>
+				<string>Slack Link</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>07-slack-filter</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>~/.local/bin/obsidian-slack-link.sh</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>07-slack-script</string>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Obsidian Workflow
@@ -339,7 +409,8 @@ Keywords:
 - start [text] : Start tracking work
 - end : Stop tracking, calculate duration
 - brief : Generate morning briefing
-- review : Generate daily review with calendar</string>
+- review : Generate daily review with calendar
+- slack [filter] : Attach Slack link to a task</string>
 	<key>uidata</key>
 	<dict>
 		<key>01-memo-input</key>
@@ -366,6 +437,10 @@ Keywords:
 		<dict><key>xpos</key><integer>50</integer><key>ypos</key><integer>550</integer></dict>
 		<key>06-review-script</key>
 		<dict><key>xpos</key><integer>250</integer><key>ypos</key><integer>550</integer></dict>
+		<key>07-slack-filter</key>
+		<dict><key>xpos</key><integer>50</integer><key>ypos</key><integer>650</integer></dict>
+		<key>07-slack-script</key>
+		<dict><key>xpos</key><integer>250</integer><key>ypos</key><integer>650</integer></dict>
 	</dict>
 	<key>version</key>
 	<string>1.0.0</string>

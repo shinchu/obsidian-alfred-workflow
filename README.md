@@ -8,7 +8,7 @@ A workflow integrating Obsidian and Alfred to streamline Daily notes, task manag
 |---------|-------------|
 | `memo [text]` | Add a quick memo to Daily note |
 | `task [text]` | Create a new task with project selection |
-| `slack [filter]` | Attach a Slack link to a task (or create a new one) |
+| `slk [filter]` | Attach a Slack link to a task (or create a new one) |
 | `start [text]` | Start work tracking |
 | `end` | End work tracking, calculate duration |
 | `brief` | Generate morning briefing |
@@ -88,18 +88,18 @@ You can filter projects by adding `>` followed by a filter string:
 
 ### Attaching a Slack Link
 
-Copy a Slack message permalink to your clipboard, then use `slack` to attach it to a task.
+Copy a Slack message permalink to your clipboard, then use `slk` to attach it to a task.
 
 **Attach to an existing task:**
 
-- `slack` → shows all open/in-progress tasks
-- `slack report` → filters tasks matching "report"
+- `slk` → shows all open/in-progress tasks
+- `slk report` → filters tasks matching "report"
 - Select a task → Slack link is added under a `## Slack` section
 
 **Create a new task with a Slack link:**
 
-- `slack Fix login bug >` → shows project selection list
-- `slack Fix login bug > work` → filters projects matching "work"
+- `slk Fix login bug >` → shows project selection list
+- `slk Fix login bug > work` → filters projects matching "work"
 - Select a project → task is created with the Slack link attached
 
 ### Work Time Tracking

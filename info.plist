@@ -347,7 +347,7 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
-				<string>slack</string>
+				<string>slk</string>
 				<key>queuedelaycustom</key>
 				<integer>0</integer>
 				<key>queuedelayimmediatelyalinitially</key>
@@ -410,7 +410,7 @@ Keywords:
 - end : Stop tracking, calculate duration
 - brief : Generate morning briefing
 - review : Generate daily review with calendar
-- slack [filter] : Attach Slack link to a task</string>
+- slk [filter] : Attach Slack link to a task</string>
 	<key>uidata</key>
 	<dict>
 		<key>01-memo-input</key>

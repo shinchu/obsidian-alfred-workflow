@@ -12,6 +12,7 @@ A workflow integrating Obsidian and Alfred to streamline Daily notes, task manag
 | `start [text]` | Start work tracking |
 | `end` | End work tracking, calculate duration |
 | `brief` | Generate morning briefing |
+| `done [filter]` | Mark a task as completed |
 | `review` | Generate daily review |
 
 ## Requirements
@@ -100,6 +101,14 @@ Copy a Slack message permalink to your clipboard, then use `slk` to attach it to
 - `slk Fix login bug >` → shows project selection list
 - `slk Fix login bug > work` → filters projects matching "work"
 - Select a project → task is created with the Slack link attached
+
+### Completing a Task
+
+`done` marks a task as completed.
+
+- `done` → shows all open/in-progress tasks
+- `done report` → filters tasks matching "report"
+- Select a task → status changes to `done` with a completion timestamp
 
 ### Work Time Tracking
 

@@ -7,7 +7,7 @@ A workflow integrating Obsidian and Alfred to streamline Daily notes, task manag
 | Command | Description |
 |---------|-------------|
 | `memo [text]` | Add a quick memo to Daily note |
-| `task [text]` | Create a new task with project selection |
+| `task [filter]` | Search tasks and open in Obsidian, or create new |
 | `slk [filter]` | Attach a Slack link to a task (or create a new one) |
 | `start [text]` | Start work tracking |
 | `end` | End work tracking, calculate duration |
@@ -77,14 +77,22 @@ Type `memo Great idea for the project` in Alfred, and it will be appended to tod
 - 14:30 Great idea for the project
 ```
 
+### Searching and Opening Tasks
+
+`task` searches existing open/in-progress tasks and opens them in Obsidian.
+
+- `task` → shows all open/in-progress tasks
+- `task report` → filters tasks matching "report"
+- Select a task → opens it in Obsidian
+
 ### Creating a Task
 
-`task Write report` shows a project selection list, then creates a task file scheduled for today.
+Use `>` to switch to task creation mode with project selection:
 
-You can filter projects by adding `>` followed by a filter string:
-
-- `task Write report` → shows all projects
+- `task Write report >` → shows all projects
 - `task Write report > work` → shows only projects matching "work"
+
+Selecting "Create" from search results creates a task without a project.
 
 ### Attaching a Slack Link
 

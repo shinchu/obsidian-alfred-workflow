@@ -1,5 +1,5 @@
 #!/bin/bash
-# obsidian-task.sh - Create a new task
+# obsidian-task.sh - Create a new task or open an existing one
 
 # Load configuration
 CONFIG_FILE="$HOME/.config/obsidian-workflow/config"
@@ -9,39 +9,56 @@ if [ ! -f "$CONFIG_FILE" ]; then
 fi
 source "$CONFIG_FILE"
 
-TASK_DIR="$VAULT/TaskNotes/Tasks"
-TODAY=$(date +%Y-%m-%d)
-NOW=$(date +%Y-%m-%dT%H:%M:%S.000+09:00)
+# Action is passed as arg from Alfred ("open" or "create")
+ACTION="$1"
 
-# Use Alfred variables (passed as environment variables)
-TASK_NAME="$task_name"
-PROJECT_NAME="$project_name"
+if [ "$ACTION" = "open" ]; then
+    # Open existing task in Obsidian
+    TASK_FILE="$task_path"
 
-if [ -z "$TASK_NAME" ]; then
-    osascript -e "display notification \"Task name is empty\" with title \"Error\" sound name \"Basso\""
-    exit 1
-fi
+    if [ ! -f "$TASK_FILE" ]; then
+        osascript -e "display notification \"Task file not found\" with title \"Error\" sound name \"Basso\""
+        exit 1
+    fi
 
-if [ -n "$PROJECT_NAME" ]; then
-    TARGET_DIR="$TASK_DIR/$PROJECT_NAME"
-    mkdir -p "$TARGET_DIR"
+    # URL-encode the absolute path for Obsidian URI
+    ENCODED_PATH=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$TASK_FILE")
+    open "obsidian://open?path=$ENCODED_PATH"
 else
-    TARGET_DIR="$TASK_DIR"
-fi
+    # Create a new task
+    TASK_DIR="$VAULT/TaskNotes/Tasks"
+    TODAY=$(date +%Y-%m-%d)
+    NOW=$(date +%Y-%m-%dT%H:%M:%S.000+09:00)
 
-# Sanitize filename (remove/replace problematic characters)
-FILENAME=$(echo "$TASK_NAME" | sed 's/[\/:\\|]/-/g')
+    # Use Alfred variables (passed as environment variables)
+    TASK_NAME="$task_name"
+    PROJECT_NAME="$project_name"
 
-TASK_PATH="$TARGET_DIR/$FILENAME.md"
+    if [ -z "$TASK_NAME" ]; then
+        osascript -e "display notification \"Task name is empty\" with title \"Error\" sound name \"Basso\""
+        exit 1
+    fi
 
-# Build projects array for frontmatter
-if [ -n "$PROJECT_NAME" ]; then
-    PROJECTS_LINE="projects:\n  - \"[[$PROJECT_NAME]]\""
-else
-    PROJECTS_LINE="projects: []"
-fi
+    if [ -n "$PROJECT_NAME" ]; then
+        TARGET_DIR="$TASK_DIR/$PROJECT_NAME"
+        mkdir -p "$TARGET_DIR"
+    else
+        TARGET_DIR="$TASK_DIR"
+    fi
 
-cat > "$TASK_PATH" << EOF
+    # Sanitize filename (remove/replace problematic characters)
+    FILENAME=$(echo "$TASK_NAME" | sed 's/[\/:\\|]/-/g')
+
+    TASK_PATH="$TARGET_DIR/$FILENAME.md"
+
+    # Build projects array for frontmatter
+    if [ -n "$PROJECT_NAME" ]; then
+        PROJECTS_LINE="projects:\n  - \"[[$PROJECT_NAME]]\""
+    else
+        PROJECTS_LINE="projects: []"
+    fi
+
+    cat > "$TASK_PATH" << EOF
 ---
 status: open
 priority: normal
@@ -55,9 +72,10 @@ tags:
 
 EOF
 
-# macOS notification
-if [ -n "$PROJECT_NAME" ]; then
-    osascript -e "display notification \"$TASK_NAME in $PROJECT_NAME\" with title \"Task Created\" sound name \"Pop\""
-else
-    osascript -e "display notification \"$TASK_NAME (scheduled: $TODAY)\" with title \"Task Created\" sound name \"Pop\""
+    # macOS notification
+    if [ -n "$PROJECT_NAME" ]; then
+        osascript -e "display notification \"$TASK_NAME in $PROJECT_NAME\" with title \"Task Created\" sound name \"Pop\""
+    else
+        osascript -e "display notification \"$TASK_NAME (scheduled: $TODAY)\" with title \"Task Created\" sound name \"Pop\""
+    fi
 fi

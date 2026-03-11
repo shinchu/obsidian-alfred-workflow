@@ -20,10 +20,11 @@ if [ ! -f "$TRACKER_FILE" ]; then
     exit 1
 fi
 
-# Read tracker file
+# Read tracker file (TIME|WORK|TASK_PATH)
 TRACKER_DATA=$(cat "$TRACKER_FILE")
 START_TIME=$(echo "$TRACKER_DATA" | cut -d'|' -f1)
-WORK=$(echo "$TRACKER_DATA" | cut -d'|' -f2-)
+WORK=$(echo "$TRACKER_DATA" | cut -d'|' -f2)
+TASK_PATH=$(echo "$TRACKER_DATA" | cut -d'|' -f3-)
 
 # Calculate duration
 START_MINUTES=$((10#${START_TIME:0:2} * 60 + 10#${START_TIME:3:2}))
@@ -45,6 +46,13 @@ fi
 
 # Add end entry to Daily note
 echo "- $END_TIME 🔴 終了: $WORK ($DURATION)" >> "$DAILY_PATH"
+
+# If task path is set, mark the task as done
+if [ -n "$TASK_PATH" ] && [ -f "$TASK_PATH" ]; then
+    NOW=$(date +%Y-%m-%dT%H:%M:%S.000+09:00)
+    sed -i '' "s/^status: .*/status: done/" "$TASK_PATH"
+    sed -i '' "s/^dateModified: .*/dateModified: $NOW/" "$TASK_PATH"
+fi
 
 # Remove tracker file
 rm "$TRACKER_FILE"

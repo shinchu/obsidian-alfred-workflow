@@ -24,11 +24,11 @@ REVIEW_CONTENT=$(mktemp)
 
 # Build review content
 echo "" >> "$REVIEW_CONTENT"
-echo "## 🌙 Daily Review ($(date +%H:%M))" >> "$REVIEW_CONTENT"
+echo "# 🌙 Daily Review ($(date +%H:%M))" >> "$REVIEW_CONTENT"
 echo "" >> "$REVIEW_CONTENT"
 
 # Today's calendar events
-echo "### 📅 今日の予定（実績）" >> "$REVIEW_CONTENT"
+echo "## 📅 今日の予定（実績）" >> "$REVIEW_CONTENT"
 CALENDAR_ARGS=()
 for cal in "${CALENDARS[@]}"; do
     CALENDAR_ARGS+=("--calendar" "$cal")
@@ -49,7 +49,7 @@ fi
 echo "" >> "$REVIEW_CONTENT"
 
 # Tasks completed today
-echo "### ✅ 完了したタスク" >> "$REVIEW_CONTENT"
+echo "## ✅ 完了したタスク" >> "$REVIEW_CONTENT"
 FOUND_COMPLETED=false
 while IFS= read -r f; do
     [ -f "$f" ] || continue
@@ -71,7 +71,7 @@ fi
 echo "" >> "$REVIEW_CONTENT"
 
 # Work time summary
-echo "### ⏱️ 作業時間" >> "$REVIEW_CONTENT"
+echo "## ⏱️ 作業時間" >> "$REVIEW_CONTENT"
 if [ -f "$DAILY_PATH" ]; then
     WORK_ENTRIES=$(grep "🔴 終了:" "$DAILY_PATH" 2>/dev/null | sed 's/^- [0-9:]*//') 
     if [ -n "$WORK_ENTRIES" ]; then
